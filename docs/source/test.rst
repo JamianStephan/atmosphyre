@@ -3,4 +3,7 @@ Test3
 
 This is a test
 
-.. autofunction:: disp1.AD_simulation.load_wavelengths
+.. autofunction:: atmosphyre.AD_simulation.load_wavelengths
+
+:class:`atmosphyre.AD_simulation` About my class.
+:meth:`atmosphyre.AD_simulation.load_wavelengths` And my cool function
