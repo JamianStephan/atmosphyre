@@ -4,6 +4,7 @@ from atmosphyre import dispersion_functions as diff_func
 import matplotlib as mpl
 
 class AD_simulation:
+
     def __init__(self,**kwargs):
         self.input={}
         self.output={}
@@ -27,8 +28,6 @@ class AD_simulation:
         
         #note: for a slit spectrograph, this relative_plate_PA_angle becomes vital. will need to implement a slit aperture using "width" and "height",
         #and implement 
-        
-    def load_wavelengths(self,wavelengths=[]):
         """
         Input the desired simulation wavelengths.
         
@@ -37,7 +36,14 @@ class AD_simulation:
         ### Parameters
         wavelengths : list of floats
             Simulation wavelengths, units of micrometers (um)
+        """    
+    def load_wavelengths(self,wavelengths=[]):
+        """_summary_
+
+        :param wavelengths: _description_, defaults to []
+        :type wavelengths: list, optional
         """
+
         self.output['wavelengths']=np.array(wavelengths)
 
     def load_hour_angles(self,HA_start=0,HA_end=1,declination=-30):

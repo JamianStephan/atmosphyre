@@ -7,6 +7,17 @@ import scipy
 from scipy import integrate
 
 def calculate_FWHM(wavelength,airmass,config):
+    """_summary_
+
+    :param wavelength: _description_
+    :type wavelength: _type_
+    :param airmass: _description_
+    :type airmass: _type_
+    :param config: _description_
+    :type config: _type_
+    :return: _description_
+    :rtype: _type_
+    """
     D = float(config['telescope_diameter'])
     L0 = float(config['wavefront_outer_scale'])
     median_seeing = float(config['median_seeing'])
