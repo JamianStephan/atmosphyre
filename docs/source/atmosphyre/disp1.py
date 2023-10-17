@@ -4,8 +4,19 @@ from atmosphyre import dispersion_functions as diff_func
 import matplotlib as mpl
 
 class AD_simulation:
-
+    """_summary_
+    
+    Test
+    """
     def __init__(self,**kwargs):
+        """Start the Foo.
+
+        :param qux: The first argument to initialize class.
+        :type qux: string
+        :param spam: Spam me yes or no...
+        :type spam: bool
+
+        """
         self.input={}
         self.output={}
         
