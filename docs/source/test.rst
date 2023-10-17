@@ -13,3 +13,7 @@ This is a test
 .. py:currentmodule:: atmosphyre
 
 .. py:class:: AD_simulation
+    .. py:method:: load_wavelengths
+
+.. py:class:: AD_simulationeek
+    .. py:method:: eek
