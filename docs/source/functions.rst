@@ -11,22 +11,24 @@ Functions
    
    :param float telescope_diameter: telescope diameter in m
 
-.. py:function:: atmosphyre.AD_simulation.load_wavelengths(wavelengths=[])
+    .. py:method:: atmosphyre.AD_simulation.load_wavelengths(wavelengths=[])
 
-   function
+    function
 
-   :param list wavelengths: list of wavelengths in um
+    :param list wavelengths: list of wavelengths in um
 
-   :return: the message id
-   :rtype: int
+    :return: the message id
+    :rtype: int
 
-.. py:function:: atmosphyre.AD_simulation.load_hour_angles(**kwargs)
+    .. py:method:: atmosphyre.AD_simulation.load_hour_angles(**kwargs)
 
-   function
+    function
 
-   :param str sender: The person sending the message
+    :param str sender: The person sending the message
 
 
 
 
 done test
+
+test 2
