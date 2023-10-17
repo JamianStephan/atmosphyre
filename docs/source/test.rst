@@ -18,9 +18,37 @@ This is a test
 .. py:class:: AD_simulationeek
     .. py:method:: eek
 
-.. py:function:: send_message(sender, recipient, message_body, [priority=1])
+.. py:class:: atmosphyre.AD_simulation(**kwargs)
 
-   Send a message to a recipient
+   Class
+
+   :param str sender: The person sending the message
+   :param str recipient: The recipient of the message
+   :param str message_body: The body of the message
+   :param priority: The priority of the message, can be a number 1-5
+   :type priority: integer or None
+   :return: the message id
+   :rtype: int
+   :raises ValueError: if the message_body exceeds 160 characters
+   :raises TypeError: if the message_body is not a basestring
+
+.. py:function:: atmosphyre.AD_simulation.load_wavelengths(**kwargs)
+
+   function
+
+   :param str sender: The person sending the message
+   :param str recipient: The recipient of the message
+   :param str message_body: The body of the message
+   :param priority: The priority of the message, can be a number 1-5
+   :type priority: integer or None
+   :return: the message id
+   :rtype: int
+   :raises ValueError: if the message_body exceeds 160 characters
+   :raises TypeError: if the message_body is not a basestring
+
+.. py:function:: atmosphyre.AD_simulation.load_hour_angles(**kwargs)
+
+   function
 
    :param str sender: The person sending the message
    :param str recipient: The recipient of the message
