@@ -18,9 +18,8 @@ This is a test
 .. py:class:: AD_simulationeek
     .. py:method:: eek
 
-.. only:: python3
 
-    .. automodule:: atmosphyre.disp1
-        :members:
-        :private-members:
-        :special-members:
+.. automodule:: atmosphyre.disp1
+    :members:
+    :private-members:
+    :special-members:

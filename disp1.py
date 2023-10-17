@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from atmosphyre import dispersion_functions as diff_func
+from atmosphyre import disp2 as diff_func
 import matplotlib as mpl
 
 class AD_simulation:
