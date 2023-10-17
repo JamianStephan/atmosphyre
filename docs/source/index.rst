@@ -21,3 +21,6 @@ Contents
    usage
    api
    test
+   Introduction
+   Functions
+   Examples
