@@ -7,3 +7,9 @@ This is a test
 
 :class:`atmosphyre.AD_simulation` About my class.
 :meth:`atmosphyre.AD_simulation.load_wavelengths` And my cool function
+
+.. py:module:: atmosphyre
+
+.. py:currentmodule:: atmosphyre
+
+.. py:class:: AD_simulation
