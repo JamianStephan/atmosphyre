@@ -34,13 +34,13 @@ For example:
 
 .. code-block:: console
 
-   (.venv) $ pip install disp1
+   (.venv) $ pip install atmosphyre
 
 .. automodule:: atmosphyre.dispersion_analysis
 
 .. code-block:: console
 
-   (.venv) $ pip install disp2
+   (.venv) $ pip install dipsersion_functions
 
 .. autofunction:: atmosphyre.calculate_FWHM
 
