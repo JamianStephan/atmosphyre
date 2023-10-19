@@ -1,3 +1,9 @@
+"""
+Lumache - Python library for cooks and food lovers.
+"""
+
+__version__ = "0.1.0"
+
 import numpy as np
 import matplotlib.pyplot as plt
 from atmosphyre import dispersion_functions as diff_func
