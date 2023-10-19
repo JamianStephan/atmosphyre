@@ -32,3 +32,8 @@ For example:
 >>> lumache.get_random_ingredients()
 ['shells', 'gorgonzola', 'parsley']
 
+
+.. automodule:: disp1
+
+.. autofunction:: disp2.calculate_FWHM
+
