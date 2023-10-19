@@ -36,11 +36,13 @@ For example:
 
    (.venv) $ pip install atmosphyre
 
-.. automodule:: atmosphyre.dispersion_analysis
+.. automodule:: atmosphyre.dispersion_functions
 
 .. code-block:: console
 
    (.venv) $ pip install dipsersion_functions
 
-.. autofunction:: atmosphyre.calculate_FWHM
+.. autofunction:: atmosphyre.dispersion_functions.calculate_FWHM
+
+   pls
 
