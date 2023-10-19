@@ -6,8 +6,9 @@ proper:
 
 .. automodule:: atmosphyre.dispersion_analysis
    :members:
-   :private-members:
+
    :special-members:
+   :member-order: bysource
 
 side: 
 
