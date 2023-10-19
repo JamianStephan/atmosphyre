@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from atmosphyre import disp2 as diff_func
 import matplotlib as mpl
-
+__version__ = "0.1.0"
 class AD_simulation:
     def __init__(self,**kwargs):
         self.input={}

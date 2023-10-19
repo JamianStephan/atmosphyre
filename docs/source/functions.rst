@@ -41,9 +41,6 @@ This is a test
 .. py:class:: AD_simulation
     .. py:method:: load_wavelengths
 
-.. py:class:: AD_simulationeek
-    .. py:method:: eek
-
 
 .. automodule:: atmosphyre.disp1
     :members:

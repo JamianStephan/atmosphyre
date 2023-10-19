@@ -5,7 +5,7 @@ from astropy.modeling.functional_models import Disk2D
 from matplotlib.path import Path
 import scipy
 from scipy import integrate
-
+__version__ = "0.1.0"
 def calculate_FWHM(wavelength,airmass,config):
     """Docstring for class Foo.
 
