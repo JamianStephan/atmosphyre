@@ -200,33 +200,6 @@ def line(A,B):
     c=A[1]-m*A[0] 
     return m,c
 
-def crop_durham_PSF(PSF,offset,major_axis,scale):
-    boundary=math.ceil(major_axis/2/scale)
-
-    data_boundary=len(PSF)
-    resized_data=np.zeros([boundary*2,boundary*2])
-
-    ymin=math.ceil(data_boundary/2-boundary-offset[1]/scale)
-    ymax=math.ceil(data_boundary/2+boundary-offset[1]/scale)
-    xmin=math.ceil(data_boundary/2-boundary-offset[0]/scale)
-    xmax=math.ceil(data_boundary/2+boundary-offset[0]/scale)
-        
-    ymin_old=ymin
-    xmin_old=xmin
-
-    if ymin < 0:
-        ymin=1
-    if xmin < 0:
-        xmin=1
-    if xmax > len(PSF):
-        xmax=len(PSF)
-    if ymax > len(PSF):
-        ymax=len(PSF)    
-    
-    if ymax > 0 and xmax > 0 and xmax - xmin_old > 0 and ymax - ymin_old > 0: 
-        resized_data[ymin-ymin_old:ymax-ymin_old,xmin-xmin_old:xmax-xmin_old]=PSF[ymin:ymax,xmin:xmax]
-    
-    return resized_data
 
 def integ_metrics(transmission):
 
