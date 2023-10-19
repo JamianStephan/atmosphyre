@@ -24,7 +24,13 @@ you can use the ``lumache.get_random_ingredients()`` function:
 
 .. autofunction:: test.calculate_FWHM
 
-test
+.. autofunction:: test.test.calculate_FWHM
+
+.. automodule:: test.test
+
+.. automodule:: lumache
+
+test22
 
 
 The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
