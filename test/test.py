@@ -1,12 +1,3 @@
-import math
-import numpy as np
-from astropy.modeling.models import Moffat2D
-from astropy.modeling.functional_models import Disk2D
-from matplotlib.path import Path
-import scipy
-from scipy import integrate
-
-
 """
 Lumache - Python library for cooks and food lovers.
 """

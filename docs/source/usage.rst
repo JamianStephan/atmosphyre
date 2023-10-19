@@ -59,3 +59,8 @@ For example:
 
 pls
 
+.. autoclass:: atmosphyre.dispersion_analysis
+
+hmm 
+.. automodule:: atmosphyre.dispersion_analysis
+

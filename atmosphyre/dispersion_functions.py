@@ -4,7 +4,6 @@ Lumache - Python library for cooks and food lovers.
 
 __version__ = "0.1.0"
 
-
 def calculate_FWHM(wavelength,airmass,config):
     """Start the Foo.
 
