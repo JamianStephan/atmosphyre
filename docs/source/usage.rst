@@ -10,7 +10,7 @@ Creating recipes
 ----------------
 1
 
-.. automodule:: atmosphyre.dispersion_functions
+none
 
 2
 

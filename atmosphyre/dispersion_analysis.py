@@ -1,5 +1,6 @@
 import numpy
 
+
 class AD_simulation:
     """Docstring for class Foo.
 
