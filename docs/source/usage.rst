@@ -36,11 +36,11 @@ For example:
 
    (.venv) $ pip install disp1
 
-.. automodule:: disp1
+.. automodule:: atmosphyre.dispersion_analysis
 
 .. code-block:: console
 
    (.venv) $ pip install disp2
 
-.. autofunction:: disp2.calculate_FWHM
+.. autofunction:: atmosphyre.calculate_FWHM
 

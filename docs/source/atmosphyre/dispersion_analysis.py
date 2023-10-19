@@ -1,59 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from atmosphyre import disp2 as diff_func
+from atmosphyre import dispersion_functions as diff_func
 import matplotlib as mpl
 
 class AD_simulation:
-    """Docstring for class Foo.
-
-    This text tests for the formatting of docstrings generated from output
-    ``sphinx.ext.autodoc``. Which contain reST, but sphinx nests it in the
-    ``<dl>``, and ``<dt>`` tags. Also, ``<tt>`` is used for class, method names
-    and etc, but those will *always* have the ``.descname`` or
-    ``.descclassname`` class.
-
-    Term
-        It is also possible to include definitions inside docstrings.
-        They should be styled as a normal definition list.
-
-    :Field List:
-        It is also possible to include definitions inside docstrings.
-        They should be styled as a normal definition list.
-
-    .. [1] A footnote contains body elements, consistently indented by at
-       least 3 spaces.
-
-    .. [Citation] A citation contains body elements, consistently indented by at
-       least 3 spaces.
-
-    Normal ``<tt>`` (like the <tt> I just wrote here) needs to be shown with
-    the same style as anything else with ````this type of markup````.
-
-    It's common for programmers to give a code example inside of their
-    docstring::
-
-        from test_py_module import Foo
-
-        myclass = Foo()
-        myclass.dothismethod('with this argument')
-        myclass.flush()
-
-        print(myclass)
-
-
-    Here is a link to :py:meth:`capitalize`.
-    Here is a link to :py:meth:`__init__`.
-
-    """
     def __init__(self,**kwargs):
-        """Start the Foo.
-
-        :param qux: The first argument to initialize class.
-        :type qux: string
-        :param spam: Spam me yes or no...
-        :type spam: bool
-
-        """
         self.input={}
         self.output={}
         
@@ -76,6 +27,8 @@ class AD_simulation:
         
         #note: for a slit spectrograph, this relative_plate_PA_angle becomes vital. will need to implement a slit aperture using "width" and "height",
         #and implement 
+        
+    def load_wavelengths(self,wavelengths=[]):
         """
         Input the desired simulation wavelengths.
         
@@ -84,14 +37,7 @@ class AD_simulation:
         ### Parameters
         wavelengths : list of floats
             Simulation wavelengths, units of micrometers (um)
-        """    
-    def load_wavelengths(self,wavelengths=[]):
-        """_summary_
-
-        :param wavelengths: _description_, defaults to []
-        :type wavelengths: list, optional
         """
-
         self.output['wavelengths']=np.array(wavelengths)
 
     def load_hour_angles(self,HA_start=0,HA_end=1,declination=-30):

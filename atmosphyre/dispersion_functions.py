@@ -5,47 +5,14 @@ from astropy.modeling.functional_models import Disk2D
 from matplotlib.path import Path
 import scipy
 from scipy import integrate
-__version__ = "0.1.0"
+
 def calculate_FWHM(wavelength,airmass,config):
-    """Docstring for class Foo.
+    """Start the Foo.
 
-    This text tests for the formatting of docstrings generated from output
-    ``sphinx.ext.autodoc``. Which contain reST, but sphinx nests it in the
-    ``<dl>``, and ``<dt>`` tags. Also, ``<tt>`` is used for class, method names
-    and etc, but those will *always* have the ``.descname`` or
-    ``.descclassname`` class.
-
-    Term
-        It is also possible to include definitions inside docstrings.
-        They should be styled as a normal definition list.
-
-    :Field List:
-        It is also possible to include definitions inside docstrings.
-        They should be styled as a normal definition list.
-
-    .. [1] A footnote contains body elements, consistently indented by at
-       least 3 spaces.
-
-    .. [Citation] A citation contains body elements, consistently indented by at
-       least 3 spaces.
-
-    Normal ``<tt>`` (like the <tt> I just wrote here) needs to be shown with
-    the same style as anything else with ````this type of markup````.
-
-    It's common for programmers to give a code example inside of their
-    docstring::
-
-        from test_py_module import Foo
-
-        myclass = Foo()
-        myclass.dothismethod('with this argument')
-        myclass.flush()
-
-        print(myclass)
-
-
-    Here is a link to :py:meth:`capitalize`.
-    Here is a link to :py:meth:`__init__`.
+    :param qux: The first argument to initialize class.
+    :type qux: string
+    :param spam: Spam me yes or no...
+    :type spam: bool
 
     """
     D = float(config['telescope_diameter'])

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
   
 setuptools.setup( 
     name="atmosphyre", 
-    version="0.0.1", 
+    version="0.0.2", 
     author="Jay Stephan", 
     author_email="Jay.Stephan@stfc.ac.uk", 
     packages=["atmosphyre"], 
