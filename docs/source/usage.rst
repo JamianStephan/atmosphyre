@@ -63,8 +63,10 @@ pls
 
 hmm 
 
-.. automodule:: atmosphyre.dispersion_analysis
-
+.. automodule:: atmosphyre.dispersion_functions
+   :members:
+   :private-members:
+   :special-members:
 test
 
 .. automodule:: atmosphyre.dispersion_analysis
