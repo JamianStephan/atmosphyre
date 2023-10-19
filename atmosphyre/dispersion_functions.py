@@ -4,13 +4,6 @@ Lumache - Python library for cooks and food lovers.
 
 __version__ = "0.1.0"
 
-import math
-import numpy as np
-from astropy.modeling.models import Moffat2D
-from astropy.modeling.functional_models import Disk2D
-from matplotlib.path import Path
-import scipy
-from scipy import integrate
 
 def calculate_FWHM(wavelength,airmass,config):
     """Start the Foo.
