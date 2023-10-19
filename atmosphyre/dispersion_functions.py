@@ -4,6 +4,7 @@ from astropy.modeling.functional_models import Disk2D
 from matplotlib.path import Path
 import scipy
 from scipy import integrate
+import math
 
 def calculate_FWHM(wavelength,airmass,config):
     """Start the Foo.
