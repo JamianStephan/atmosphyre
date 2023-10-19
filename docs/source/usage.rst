@@ -22,6 +22,10 @@ you can use the ``lumache.get_random_ingredients()`` function:
 
 .. autofunction:: lumache.calculate_FWHM
 
+.. autofunction:: test.calculate_FWHM
+
+test
+
 
 The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
 or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
