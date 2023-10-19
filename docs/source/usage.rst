@@ -8,6 +8,9 @@ Installation
 
 To use Lumache, first install it using pip:
 
+.. code-block:: console
+
+   (.venv) $ pip install lumache
 
 Creating recipes
 ----------------
@@ -29,8 +32,15 @@ For example:
 >>> lumache.get_random_ingredients()
 ['shells', 'gorgonzola', 'parsley']
 
+.. code-block:: console
+
+   (.venv) $ pip install disp1
 
 .. automodule:: disp1
+
+.. code-block:: console
+
+   (.venv) $ pip install disp2
 
 .. autofunction:: disp2.calculate_FWHM
 
