@@ -6,4 +6,3 @@ astropy
 matplotlib
 scipy
 
-
