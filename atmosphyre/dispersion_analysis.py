@@ -1,3 +1,6 @@
+import numpy
+import pandas
+
 class AD_simulation:
     """Docstring for class Foo.
 

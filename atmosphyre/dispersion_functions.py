@@ -1,3 +1,5 @@
+import numpy
+
 def calculate_FWHM(wavelength,airmass,config):
     """Start the Foo.
 
