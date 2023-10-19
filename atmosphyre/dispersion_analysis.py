@@ -79,25 +79,19 @@ class AD_simulation:
         
     def load_wavelengths(self,wavelengths=[]):
         """
-        Input the desired simulation wavelengths.
-        
-        Shifts and transmissions will be calculated for these wavelengths.
+        Input the desired simulation wavelengths. Shifts and transmissions will be calculated for these wavelengths.
 
-        ### Parameters
-        wavelengths : list of floats
-            Simulation wavelengths, units of micrometers (um)
+        :param wavelengths: Simulation wavelengths, units of micrometers (um)
+        :type float: list
         """
         self.output['wavelengths']=np.array(wavelengths)
 
     def load_hour_angles(self,HA_start=0,HA_end=1,declination=-30):
         """
-        Input the observation parameters.
+        Input the observation parameters. This calculates the airmasses and parallatic angles for the observation.
         
-        This calculates the airmasses and parallatic angles for the observation.
-        
-        ### Parameters
-        HA_start : float
-            Starting hour angle
+        :param HA_start: Starting hour angle
+        :type float:
         HA_end : float
             Ending hour angle
         declination : float

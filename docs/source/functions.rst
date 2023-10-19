@@ -11,7 +11,7 @@ proper:
 
 side: 
 
-   .. automodule:: atmosphyre.dispersion_functions
+.. automodule:: atmosphyre.dispersion_functions
    :members:
    :private-members:
    :special-members:
