@@ -44,5 +44,5 @@ For example:
 
 .. autofunction:: atmosphyre.dispersion_functions.calculate_FWHM
 
-   pls
+pls
 
