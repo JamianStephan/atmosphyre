@@ -16,6 +16,14 @@ It can be installed with pip:
 Contents
 --------
 
+.. autosummary::
+   :toctree: _autosummary
+   :template: custom-module-template.rst
+   :recursive:
+
+   atmosphyre
+
+
 .. toctree::
 
    usage
