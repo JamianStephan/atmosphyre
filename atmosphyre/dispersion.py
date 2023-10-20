@@ -119,17 +119,16 @@ class sim:
         Calculates the shift for each wavelength during an integration based on the observation details.
         
         This is dependent on two reference wavelengths:
-            1) the guide wavelength - the wavelength the telescope guides on, which
-            remains fixed on the focal plane
+            1) the guide wavelength - the wavelength the telescope guides on, which remains fixed on the focal plane.
             2) the aperture wavelength - the wavelength of the dispersed light that the aperture centre is positioned on. 
         
         Shifts are calculated using the Fillipenko 1982 model.
         
-        This function must come after load_wavelengths and load_observation
+        This function must come after ``load_wavelengths`` and ``load_observation``
         
-        :param guide_wavelength: The observation's guide wavelength, in units of micrometers. Default = 0.8um
+        :param guide_wavelength: The observation's guide wavelength, in units of micrometers. Default = 0.8um.
         :type guide_wavelength: float
-        :param aperture_wavelength: The wavelength of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation. Default = 0.8um
+        :param aperture_wavelength: The wavelength of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation. Default = 0.8um.
         :type guide_wavelength: float
         """
         self.input['guide_wavelength']=guide_wavelength
@@ -175,11 +174,11 @@ class sim:
         """
         Define the spectrograph aperture.
         
-        :param aperture_major_axis: Length of the aperture's major axis, units of arcseconds. Default = 0.6 arcsec
+        :param aperture_major_axis: Length of the aperture's major axis, units of arcseconds. Default = 0.6 arcsec.
         :type aperture_major_axis: float
-        :param aperture_type: Aperture shape to use in the simulation. Currently can be one of "hexagons", "circle", (WIP: slit, square). Default = "circle"
+        :param aperture_type: Aperture shape to use in the simulation. Currently can be one of "hexagons", "circle", (WIP: slit, square). Default = "circle".
         :type aperture_type: string
-        :param hexagon_radius: If aperture is "hexagons", the number of rings in the hexagonally packed array. Default = 1
+        :param hexagon_radius: If aperture is "hexagons", the number of rings in the hexagonally packed array. Default = 1.
         :type hexagon_radius: int
         """
         self.input['aperture_major_axis']=aperture_major_axis
@@ -188,9 +187,9 @@ class sim:
              
     def load_PSFs(self,PSF_type="moffat",moffat_beta=2.5):
         """
-        Define and generate the PSFs. These will be generated with airmass and wavelength dependences.
+        Define and generate the PSFs. These will be generated with airmass and wavelength dependences and are needed for the transmission calculations.
         
-        This function must come after load_wavelengths, load_observation, load_aperture, and calculate_integration_shifts.
+        This function must come after ``load_wavelengths``, ``load_observation``, ``load_aperture``, and ``calculate_integration_shifts``.
         
         :param PSF_type: PSF form to use in the simulations. Can be one of "moffat", "gaussian". Default = "moffat"
         :type PSF_type: string
@@ -218,7 +217,7 @@ class sim:
         """
         Numerically calculates the transmissions values.
         
-        This function must come after load_wavelengths, load_observation, load_aperture, calculate_integration_shifts, and load_PSFs
+        This function must come after ``load_wavelengths``, ``load_observation``, ``load_aperture``, ``calculate_integration_shifts``, and ``load_PSFs``.
         """
         convolved_arrays=self.output['PSFs']*self.output['aperture']
         convolved_aligned_arrays=self.output['aligned_PSFs']*self.output['aperture']
@@ -249,7 +248,7 @@ class sim:
         
         :param y_axis: The y-axis of the transmission plot can be relative to either raw transmissions or no atmospheric-dispersion transmissions. Options are "raw" or "relative" respectively. Default = "relative".
         :type y_axis: string
-        :param track_indexes: indexes of the wavelengths to use for the track plot. Default = [0,-1]
+        :param track_indexes: indexes of the wavelengths to use for the track plot. Default = [0,-1].
         :type track_indexes: list of int
         """
         plt.style.use('bmh')
@@ -290,8 +289,6 @@ class sim:
         plt.legend()
         plt.xlabel("x (arcsec)")
         plt.ylabel("y (arcsec)")
-
-
     
     def run(self,observation_start=0,observation_end=1,declination=-30,wavelengths=[],aperture_major_axis=[],guide_wavelength=0,aperture_wavelength=0,**kwargs):
         """
@@ -308,11 +305,11 @@ class sim:
         :type declination: float
         :param wavelengths: Wavelengths to calculate transmission for, units of micrometers (um).
         :type wavelengths: list of float
-        :param aperture_major_axis: Length of the aperture's major axis, units of arcseconds. Default = 0.6 arcsec
+        :param aperture_major_axis: Length of the aperture's major axis, units of arcseconds. Default = 0.6 arcsec.
         :type aperture_major_axis: float
-        :param guide_wavelength: The observation's guide wavelength, in units of micrometers. Default = 0 - automatically optimised
+        :param guide_wavelength: The observation's guide wavelength, in units of micrometers. Default = 0 - automatically optimised.
         :type guide_wavelength: float
-        :param aperture_wavelength: The wavelength of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation. Default = 0: automatically optimsed
+        :param aperture_wavelength: The wavelength of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation. Default = 0: automatically optimised.
         :type guide_wavelength: float
         """
         self.config.update(kwargs)
@@ -331,14 +328,14 @@ class sim:
             
     def optimise_integration(self,guide_options=[],aperture_options=[],guide_aperture="equal"):
         """
-        Optimise the aperture and guide wavelengths.
+        Optimise the aperture and guide wavelengths. The metric optimised is the transmission curve's minimum multiplied by the throughput squared.
         
-        The metric optimised is the transmission curve's minimum multiplied by the throughput squared.
+        This function must come after load_wavelengths, load_observation, and load_aperture
         
-        :param guide_wavelength: The observation's guide wavelength, in units of micrometers. Default = 0 - automatically optimised
-        :type guide_wavelength: float
-        :param aperture_wavelength: The wavelength of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation. Default = 0: automatically optimsed
-        :type guide_wavelength: float
+        :param guide_wavelength: The possible observation's guide wavelengths, in units of micrometers.
+        :type guide_wavelength: list of float
+        :param aperture_wavelength: The possible wavelengths of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation.
+        :type guide_wavelength: list of float
         :param guide_aperture: Determines whether the guide and aperture wavelengths are independent or are set to be equal, options are "independent" or "equal" respectively. Default = "equal"
         :type guide_aperture: string
         """
