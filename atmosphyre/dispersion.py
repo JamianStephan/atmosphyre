@@ -68,25 +68,25 @@ class sim:
         
     def load_wavelengths(self,wavelengths=[]):
         """
-        Input the desired simulation wavelengths. Shifts and transmissions will be calculated for these wavelengths.
+        Input the desired wavelengths for the analysis. Shifts and transmissions will be calculated for these.
 
         :param wavelengths: Simulation wavelengths, units of micrometers (um).
-        :type wavelengths: list of floats.
+        :type wavelengths: list of float.
         """
         self.output['wavelengths']=np.array(wavelengths)
 
-    def load_hour_angles(self,HA_start=0,HA_end=1,declination=-30):
+    def load_observation(self,observation_start=0,observation_end=1,declination=-30):
         """
-        Input the observation parameters. This calculates the airmasses and parallatic angles for the observation.
+        Input the observation targeting details. This calculates the airmasses and parallatic angles for the observation.
         
-        :param HA_start: Starting hour angle
-        :type float:
-        HA_end : float
-            Ending hour angle
-        declination : float
-            Declination of the observation, units of degrees
+        :param observation_start: Start of the observation in terms of hour angles, default = 0h.
+        :type observation_start: float
+        :param observation_end: End of the observation in terms of hour angles, default = 1h.
+        :type observation_end: float
+        :param declination: Declination of the observation target, in degrees. Default = -30 deg.
+        :type declination: float
         """
-        HA_range=np.linspace(HA_start,HA_end,self.config['simulation_intervals'])
+        HA_range=np.linspace(observation_start,observation_end,self.config['simulation_intervals'])
         self.input['HA_range']=HA_range
         self.input['declination']=declination
 
@@ -122,7 +122,7 @@ class sim:
         remains fixed on the focal plane, and 2) the aperture wavelength the aperture is positioned on. Shifts calculated
         using the Fillipenko 1982 model.
         
-        This must come after load_wavelengths and load_hour_angles
+        This must come after load_wavelengths and load_observation
         
         ### Parameters
         guide_wavelength : float
@@ -193,7 +193,7 @@ class sim:
         
         These will be generated with airmass and wavelength dependences.
         
-        This must come after load_wavelengths, load_hour_angles, load_aperture, and calculate_integration_shifts.
+        This must come after load_wavelengths, load_observation, load_aperture, and calculate_integration_shifts.
         
         ### Parameters
         PSF_type : string, default = "moffat"
@@ -224,7 +224,7 @@ class sim:
         """
         Calculates the transmissions values numerically.
         
-        This must come after load_wavelengths, load_hour_angles, load_aperture, calculate_integration_shifts, and load_PSFs
+        This must come after load_wavelengths, load_observation, load_aperture, calculate_integration_shifts, and load_PSFs
         """
         convolved_arrays=self.output['PSFs']*self.output['aperture']
         convolved_aligned_arrays=self.output['aligned_PSFs']*self.output['aperture']
@@ -300,7 +300,7 @@ class sim:
 
 
     
-    def run(self,HA_start=0,HA_end=1,declination=-30,wavelengths=[],aperture_major_axis=[],guide_wavelength=0,aperture_wavelength=0,**kwargs):
+    def run(self,observation_start=0,observation_end=1,declination=-30,wavelengths=[],aperture_major_axis=[],guide_wavelength=0,aperture_wavelength=0,**kwargs):
         """
         A simple in-built (but limited) atmospheric dispersion simulation.
         
@@ -308,9 +308,9 @@ class sim:
         The simulation in this setup is a circular fibre with atmopsheric moffat PSFs.
         
         ### Parameters
-        HA_start : float
+        observation_start : float
             Starting hour angle
-        HA_end : float
+        observation_end : float
             Ending hour angle
         declination : float
             Declination of the observation, units of degrees
@@ -326,7 +326,7 @@ class sim:
             Wavelength the aperture is centred on (by default this refers to dispersion half-way through the integration)  
         """
         self.config.update(kwargs)
-        self.load_hour_angles(HA_start=HA_start,HA_end=HA_end,declination=declination)
+        self.load_observation(observation_start=observation_start,observation_end=observation_end,declination=declination)
         self.load_wavelengths(wavelengths=wavelengths)
         self.load_aperture(aperture_major_axis=aperture_major_axis,aperture_type="circle")
         if guide_wavelength==0 or aperture_wavelength ==0:
