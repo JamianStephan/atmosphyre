@@ -77,7 +77,7 @@ class sim:
 
     def load_observation(self,observation_start=0,observation_end=1,declination=-30):
         """
-        Input the observation targeting details. This calculates the airmasses and parallatic angles for the observation.
+        Input the observation/target details. This calculates the airmasses and parallatic angles for the observation.
         
         :param observation_start: Start of the observation in terms of hour angles, default = 0h.
         :type observation_start: float
@@ -114,21 +114,23 @@ class sim:
         para_angles=diff_func.parallatic_angle(np.array(HA_range),dec,lat)
         self.output['raw_para_angles']=np.array(para_angles) #actual PAs    
         
-    def calculate_integration_shifts(self, guide_wavelength=0, aperture_wavelength=0):
+    def calculate_integration_shifts(self, guide_wavelength=0.8, aperture_wavelength=0.8):
         """
-        Calculates the shift for each wavelength during an integration.
+        Calculates the shift for each wavelength during an integration based on the observation details.
         
-        This is dependent on two reference wavelengths, 1) the guide wavelength the telescope operates on, which
-        remains fixed on the focal plane, and 2) the aperture wavelength the aperture is positioned on. Shifts calculated
-        using the Fillipenko 1982 model.
+        This is dependent on two reference wavelengths:
+            1) the guide wavelength - the wavelength the telescope guides on, which
+            remains fixed on the focal plane
+            2) the aperture wavelength - the wavelength of the dispersed light that the aperture centre is positioned on. 
         
-        This must come after load_wavelengths and load_observation
+        Shifts are calculated using the Fillipenko 1982 model.
         
-        ### Parameters
-        guide_wavelength : float
-            Observation's guide wavelength, units of micrometers (um)
-        aperture_wavelength : float
-            Wavelength the aperture is centred on (by default this refers to dispersion half-way through the integration), units of micrometers (um)
+        This function must come after load_wavelengths and load_observation
+        
+        :param guide_wavelength: The observation's guide wavelength, in units of micrometers. Default = 0.8um
+        :type guide_wavelength: float
+        :param aperture_wavelength: The wavelength of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation. Default = 0.8um
+        :type guide_wavelength: float
         """
         self.input['guide_wavelength']=guide_wavelength
         self.input['aperture_wavelength']=aperture_wavelength
@@ -169,19 +171,16 @@ class sim:
                            centre_shift_para[1]*np.cos(phi)+centre_shift_para[0]*np.sin(phi)]
         self.output['centre_shift']=centre_shift_para
         
-    def load_aperture(self,aperture_major_axis=0,aperture_type="hexagons",hexagon_radius=1):
+    def load_aperture(self,aperture_major_axis=0.6,aperture_type="hexagons",hexagon_radius=1):
         """
         Define the spectrograph aperture.
         
-        ### Parameters
-        aperture_major_axis : float
-            major axis length of the aperture, units of arcseconds
-        aperture_type: string
-            The aperture shape to use in the simulation, can be one of "hexagons", "circle", (TBD: slit, square?)
-        
-        ### Extra-Parameters
-        hexagon_radius : int, default = 1
-            The number of rings in the hexagons aperture array
+        :param aperture_major_axis: Length of the aperture's major axis, units of arcseconds. Default = 0.6 arcsec
+        :type aperture_major_axis: float
+        :param aperture_type: Aperture shape to use in the simulation. Currently can be one of "hexagons", "circle", (WIP: slit, square). Default = "hexagons"
+        :type aperture_type: string
+        :param hexagon_radius: If aperture is "hexagons", the number of rings in the hexagonally packed array. Default = 1
+        :type hexagon_radius: int
         """
         self.input['aperture_major_axis']=aperture_major_axis
         aperture=diff_func.make_aperture(aperture_type,aperture_major_axis,self.config,hexagon_radius=hexagon_radius)
@@ -189,19 +188,14 @@ class sim:
              
     def load_PSFs(self,PSF_type="moffat",moffat_beta=2.5):
         """
-        Define and generate the PSFs.
+        Define and generate the PSFs. These will be generated with airmass and wavelength dependences.
         
-        These will be generated with airmass and wavelength dependences.
+        This function must come after load_wavelengths, load_observation, load_aperture, and calculate_integration_shifts.
         
-        This must come after load_wavelengths, load_observation, load_aperture, and calculate_integration_shifts.
-        
-        ### Parameters
-        PSF_type : string, default = "moffat"
-            Form of the PSF to use in the simulations. Can be one of "moffat", "gaussian".
-        
-        ### Extra-Parameters
-        moffat_beta : float, default = 2.5
-            The power value of the moffat PSF
+        :param PSF_type: PSF form to use in the simulations. Can be one of "moffat", "gaussian". Default = "moffat"
+        :type PSF_type: string
+        :param moffat_beta: Power value of the moffat PSF. Default = 2.5
+        :type moffat_beta: float
         """
         self.input['PSF_type']=PSF_type
         all_PSFs=[]
@@ -222,9 +216,9 @@ class sim:
         
     def calculate_integration_transmissions(self):
         """
-        Calculates the transmissions values numerically.
+        Numerically calculates the transmissions values.
         
-        This must come after load_wavelengths, load_observation, load_aperture, calculate_integration_shifts, and load_PSFs
+        This function must come after load_wavelengths, load_observation, load_aperture, calculate_integration_shifts, and load_PSFs
         """
         convolved_arrays=self.output['PSFs']*self.output['aperture']
         convolved_aligned_arrays=self.output['aligned_PSFs']*self.output['aperture']
@@ -248,16 +242,15 @@ class sim:
     def integration_plots(self,y_axis='relative',track_indexes=[0,-1]):
         """
         Illustrates simulation results with two graphs:
-        1) Transmission vs wavelength curves for individual fibres and entire bundle.
-        2) Track plot of monochromatic spot PSFs on the aperture over an integration.
+            1) Transmission vs wavelength curves for individual fibres and entire bundle.
+            2) Track plot of monochromatic spot PSFs on the aperture over an integration.
         
-        This must come after calculate_integration_transmissions
+        This function must come after calculate_integration_transmissions
         
-        ### Extra-Parameters
-        y_axis : string, default "relative"
-            Set to "relative" for transmissions to be relative to no-AD, and "raw" for raw transmissions
-        track_indexes : list of floats, default [0,-1]
-            Indexes of the wavelengths to use on the track plot
+        :param y_axis: The y-axis of the transmission plot can be relative to either raw transmissions or no atmospheric-dispersion transmissions. Options are "raw" or "relative" respectively. Default = "relative".
+        :type y_axis: string
+        :param track_indexes: indexes of the wavelengths to use for the track plot. Default = [0,-1]
+        :type track_indexes: list of int
         """
         plt.style.use('bmh')
         fig=plt.figure(figsize=[7,5])
