@@ -5,15 +5,14 @@ with open("README.md", "r") as fh:
   
 setuptools.setup( 
     name="atmosphyre", 
-    version="0.0.3", 
+    version="0.0.4", 
     author="Jay Stephan", 
     author_email="Jay.Stephan@stfc.ac.uk", 
-    packages=["atmosphyre","numpy","astropy","math","scipy","matplotlib"], 
+    packages=["atmosphyre"],  
     description="A sample test package", 
     long_description=description, 
     long_description_content_type="text/markdown", 
     license='MIT', 
-    install_requires=['numpy'] 
+    install_requires=['numpy','astropy','matplotlib','scipy'] 
 ) 
-
 

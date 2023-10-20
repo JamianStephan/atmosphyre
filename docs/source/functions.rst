@@ -1,18 +1,12 @@
 Functions
 =====
 
-Test
+Test 2
 
 proper:
 
-.. automodule:: atmosphyre.dispersion_analysis
+.. automodule:: atmosphyre.dispersion
    :members:
    :special-members:
    :member-order: bysource
 
-side: 
-
-.. automodule:: atmosphyre.dispersion_functions
-   :members:
-   :private-members:
-   :special-members:
