@@ -70,7 +70,7 @@ class sim:
         """
         Input the desired wavelengths for the analysis. Shifts and transmissions will be calculated for these.
 
-        :param wavelengths: Simulation wavelengths, units of micrometers (um).
+        :param wavelengths: Wavelengths to calculate transmission for, units of micrometers (um).
         :type wavelengths: list of float
         """
         self.output['wavelengths']=np.array(wavelengths)
@@ -171,13 +171,13 @@ class sim:
                            centre_shift_para[1]*np.cos(phi)+centre_shift_para[0]*np.sin(phi)]
         self.output['centre_shift']=centre_shift_para
         
-    def load_aperture(self,aperture_major_axis=0.6,aperture_type="hexagons",hexagon_radius=1):
+    def load_aperture(self,aperture_major_axis=0.6,aperture_type="circle",hexagon_radius=1):
         """
         Define the spectrograph aperture.
         
         :param aperture_major_axis: Length of the aperture's major axis, units of arcseconds. Default = 0.6 arcsec
         :type aperture_major_axis: float
-        :param aperture_type: Aperture shape to use in the simulation. Currently can be one of "hexagons", "circle", (WIP: slit, square). Default = "hexagons"
+        :param aperture_type: Aperture shape to use in the simulation. Currently can be one of "hexagons", "circle", (WIP: slit, square). Default = "circle"
         :type aperture_type: string
         :param hexagon_radius: If aperture is "hexagons", the number of rings in the hexagonally packed array. Default = 1
         :type hexagon_radius: int
@@ -299,24 +299,21 @@ class sim:
         
         The guide and aperture will be optimised to the nearest 0.1um if values are not input.
         The simulation in this setup is a circular fibre with atmopsheric moffat PSFs.
-        
-        ### Parameters
-        observation_start : float
-            Starting hour angle
-        observation_end : float
-            Ending hour angle
-        declination : float
-            Declination of the observation, units of degrees
-        wavelengths : list of floats
-            Simulation wavelengths, units of micrometers (um)
-        aperture_major_axis : float
-            major axis length of the aperture, units of arcseconds
 
-        ### Extra-Parameters
-        guide_wavelength : float, default = 0
-            Observation's guide wavelength
-        aperture_wavelength : float, default = 0
-            Wavelength the aperture is centred on (by default this refers to dispersion half-way through the integration)  
+        :param observation_start: Start of the observation in terms of hour angles, default = 0h.
+        :type observation_start: float
+        :param observation_end: End of the observation in terms of hour angles, default = 1h.
+        :type observation_end: float
+        :param declination: Declination of the observation target, in degrees. Default = -30 deg.
+        :type declination: float
+        :param wavelengths: Wavelengths to calculate transmission for, units of micrometers (um).
+        :type wavelengths: list of float
+        :param aperture_major_axis: Length of the aperture's major axis, units of arcseconds. Default = 0.6 arcsec
+        :type aperture_major_axis: float
+        :param guide_wavelength: The observation's guide wavelength, in units of micrometers. Default = 0 - automatically optimised
+        :type guide_wavelength: float
+        :param aperture_wavelength: The wavelength of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation. Default = 0: automatically optimsed
+        :type guide_wavelength: float
         """
         self.config.update(kwargs)
         self.load_observation(observation_start=observation_start,observation_end=observation_end,declination=declination)
@@ -332,22 +329,20 @@ class sim:
             self.calculate_integration_transmissions()
         self.integration_plots()
             
-    def optimise_integration(self,guide_options=[],aperture_options=[],guide_aperture="independent"):
+    def optimise_integration(self,guide_options=[],aperture_options=[],guide_aperture="equal"):
         """
         Optimise the aperture and guide wavelengths.
         
         The metric optimised is the transmission curve's minimum multiplied by the throughput squared.
         
-        ### Parameters
-        guide_options : list of floats
-            Guide wavelength values to iterate over
-        aperture_options : list of floats
-            Aperture wavelength values to iterate over
-            
-        ### Extra-Parameters
-        guide_aperture : string
-            If "independent", the guide and aperture wavelength values can be different. If "equal" they are are set equal.
+        :param guide_wavelength: The observation's guide wavelength, in units of micrometers. Default = 0 - automatically optimised
+        :type guide_wavelength: float
+        :param aperture_wavelength: The wavelength of the dispersed light that the aperture centre is positioned on, in units of micrometers - by default this refers to the dispersion half-way through the observation. Default = 0: automatically optimsed
+        :type guide_wavelength: float
+        :param guide_aperture: Determines whether the guide and aperture wavelengths are independent or are set to be equal, options are "independent" or "equal" respectively. Default = "equal"
+        :type guide_aperture: string
         """
+        
         if guide_aperture=="independent":
             metrics=np.zeros((len(guide_options),len(aperture_options),3))
             performance_metrics=np.zeros((len(guide_options),len(aperture_options),3))
