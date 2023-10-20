@@ -71,7 +71,7 @@ class sim:
         Input the desired wavelengths for the analysis. Shifts and transmissions will be calculated for these.
 
         :param wavelengths: Simulation wavelengths, units of micrometers (um).
-        :type wavelengths: list of float.
+        :type wavelengths: list of float
         """
         self.output['wavelengths']=np.array(wavelengths)
 
