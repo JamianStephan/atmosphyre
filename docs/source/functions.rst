@@ -1,12 +1,11 @@
 Functions
 =====
 
-Test 2
+Test 3
 
 proper:
 
 .. automodule:: atmosphyre.dispersion
    :members:
-   :special-members:
    :member-order: bysource
 
