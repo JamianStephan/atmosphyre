@@ -19,8 +19,10 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.coverage',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'nbsphinx',
 ]
+source_suffix = [".rst", ".md"]
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
