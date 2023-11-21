@@ -8,7 +8,7 @@ Generic Fibre Aperture
    :maxdepth: 2
    :caption: Contents:
 
-   notebooks/workspace
+   notebooks/workspace.ipynb
 
 MOSAIC
 --------

@@ -22,4 +22,4 @@ The documentation is a work in progress. Below presents the background to the pa
    introduction
    functions
    examples
-   workspace.ipynb
+   notebooks/workspace.ipynb
