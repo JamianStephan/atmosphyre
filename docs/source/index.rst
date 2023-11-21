@@ -15,6 +15,7 @@ It can be installed with pip:
 
 Contents
 --------
+The documentation is a work in progress. Below presents the background to the package, the available functions for use in analysis, and examples of Atmosphyre in practice.
 
 .. toctree::
 
