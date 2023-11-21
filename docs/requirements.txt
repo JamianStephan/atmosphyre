@@ -6,4 +6,5 @@ astropy
 matplotlib
 scipy
 nbsphinx
+sphinx_gallery
 

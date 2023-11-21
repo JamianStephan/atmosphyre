@@ -4,11 +4,8 @@ Test
 
 Generic Fibre Aperture
 --------
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   notebooks/workspace.ipynb
+.. nbgallery::
+   notebooks/workspace
 
 MOSAIC
 --------

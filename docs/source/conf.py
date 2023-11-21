@@ -21,6 +21,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.napoleon',
     'nbsphinx',
+    "sphinx_gallery.load_style"
 ]
 source_suffix = [".rst", ".md"]
 
