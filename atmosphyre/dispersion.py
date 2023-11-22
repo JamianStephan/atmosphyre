@@ -286,7 +286,7 @@ class sim:
                 xs.append(shifts[o][i][0])
                 ys.append(shifts[o][i][1]) 
             plt.plot(xs,ys,marker='x',color=cmap.to_rgba(weights[count]),label="{}um".format(round(self.output['wavelengths'][i],4)))
-        plt.legend()
+        plt.legend(loc=1)
         plt.xlabel("x (arcsec)")
         plt.ylabel("y (arcsec)")
     
