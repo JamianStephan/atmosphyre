@@ -385,6 +385,8 @@ class sim:
         print("Min Transmission = {}%".format(round(best_metric[0]*100)))
         print("Max Transmission = {}%".format(round(100*best_metric[1])))
         print("Throughput = {}%".format(round(100*best_metric[2])))
+        print("Optimal Guide Wavelength = {}um".format(best_guide))
+        print("Optimal Apeture Wavelength = {}um".format(best_aperture))
          
         self.calculate_integration_shifts(round(best_guide,5),round(best_aperture,5))
         self.load_PSFs()
